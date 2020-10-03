@@ -14,6 +14,9 @@ public class NoteServlet extends HttpServlet {
     
         String editNote = request.getParameter("edit");
         
+        String title;
+        String content;
+        
         String firstLine = null;
         String secondLine = null;
         
@@ -22,9 +25,11 @@ public class NoteServlet extends HttpServlet {
         
         firstLine = br.readLine();
         request.setAttribute("first", firstLine);
+        request.setAttribute("title", firstLine);
         if(firstLine != null) {
             secondLine = br.readLine();
             request.setAttribute("second", secondLine);
+            request.setAttribute("content", secondLine);
         }
         br.close();
         
