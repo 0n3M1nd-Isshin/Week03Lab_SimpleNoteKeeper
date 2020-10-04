@@ -46,9 +46,16 @@ public class NoteServlet extends HttpServlet {
         
         String title = request.getParameter("title");
         String content = request.getParameter("content");
+        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
         
         request.setAttribute("title", title);
         request.setAttribute("content", content);
+        
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
+        pw.printf("%s%n" , title);
+        pw.printf("%s" , content);
+        
+        pw.close();
         
         getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);
     }
